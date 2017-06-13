@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class GithubPage {
+export class Materia2ServicePage {
   navigateTo() {
     return browser.get('/');
   }

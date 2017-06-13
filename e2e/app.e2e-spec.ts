@@ -1,10 +1,10 @@
-import { GithubPage } from './app.po';
+import { Materia2ServicePage } from './app.po';
 
-describe('github App', () => {
-  let page: GithubPage;
+describe('materia2-service App', () => {
+  let page: Materia2ServicePage;
 
   beforeEach(() => {
-    page = new GithubPage();
+    page = new Materia2ServicePage();
   });
 
   it('should display message saying app works', () => {
