@@ -17,7 +17,7 @@ export class HausTableComponent implements OnInit {
    @ViewChild('planRout') elPlanRout:ElementRef;
    @ViewChild(SideMapComponent) sideMap;
    @ViewChild(SliderComponent) sliderChild;
-   private sideMapShow:boolean = false;
+   private sideMapShow:boolean = true;
    private slideInit:boolean = false;
    private Parkhaus:any;
    private lastTime:any;
@@ -27,14 +27,10 @@ export class HausTableComponent implements OnInit {
    constructor(private service:ParkingsService,private addresService:addresShared,private router:Router) {}
 
   ngOnInit() {
-    // this.sideMapShow= true;
-
     this.callService() ;
-    // this.sideMap.currentlocationFind();
     this.subscription = Observable.interval(1000 * 60).subscribe(x => {
       this.callService();
     });
-    this.sideMapShow = true;
   }
 
   callService() {
@@ -50,19 +46,14 @@ export class HausTableComponent implements OnInit {
   onCloseSidenavEnd(){
     this.tabEnd.selectedIndex = 0;
     this.slideInit = false;
-    this.sideMapShow=false;
     this.addresService.setParkHausName("");
   }
   onOpenSidenavEnd(park){
     this.currentParkName = park.Name;
-    if(this.sideMap != undefined ){
-    this.sideMap.serchAddres(park.Name);
-    }
   }
   mapShow(){
-    // this.router.navigate(['/hausmap'])
+    this.sideMap.serchAddres(this.currentParkName)
     console.log("mapshoe")
-    this.sideMapShow= true;
   }
   showPark(park) {
     this.addresService.setParkHausName(park.Name);

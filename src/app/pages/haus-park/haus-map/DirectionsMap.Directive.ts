@@ -63,7 +63,7 @@ export class DirectionsMapDirective {
         }
    }
     renderDirection(travelMode ?){
-      if(!(this.destination.lat === 0 || this.destination.lat === undefined)) {
+      if(!(this.destination.lat === 0 || this.destination.lat === undefined || this.currentPosition.lat === undefined)) {
       if (!(travelMode === undefined)) { this.travelMode = travelMode;
       }else { this.travelMode = 'DRIVING'; }
       for (let i = 0 ; i < this.markerArray.length; i++ ) {
@@ -74,6 +74,7 @@ export class DirectionsMapDirective {
       this.gmapsApi.getNativeMap().then(map => {
               const me = this;
               me.map = map;
+              
               const directionsService = new google.maps.DirectionsService;
               this.directionsDisplay.setMap(map);
               this.directionsDisplay.setOptions({
@@ -83,6 +84,7 @@ export class DirectionsMapDirective {
                             strokeColor:  '#ff7400'
                         }
                 });
+                google.maps.event.trigger(map, "resize");
              // remove default markers
               this.directionsDisplay.setOptions( { suppressMarkers: true } );
              //
@@ -107,6 +109,7 @@ export class DirectionsMapDirective {
                                 }
               });
              this.directionsDisplay.setPanel(this.elPlanRout.nativeElement);
+             
     });}
   }}
   clearDirection(){
