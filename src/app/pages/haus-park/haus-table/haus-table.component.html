@@ -19,7 +19,7 @@
               <th>Status</th>
              </tr> 
              <tr [ngClass]="currentPark | opencloseFilter" > 
-              <td [ngClass]="currentPark.Gesamt-currentPark.Aktuell | freiplatzeFilter"><h4>{{currentPark.Gesamt-currentPark.Aktuell}}</h4></td>
+              <td [ngClass]="currentPark.Gesamt-currentPark.Aktuell | freiplatzeFilter"><h4>{{currentPark.Gesamt-currentPark.Aktuell | FreiPlatz }}</h4></td>
               <td ><img  *ngIf="!(currentPark.Name == null)" src="./assets/img/pfeil-{{currentPark.Trend}}.gif"  height="30" width="30"/></td>
               <td [ngClass]="currentPark.Status | statusFilter "> <h4>{{currentPark.Status}}</h4></td>
              </tr> 
